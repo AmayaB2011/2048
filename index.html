@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.jpg" type="images/x-icon">
+    <title>Snake Game</title>
+</head>
+<body>
+    <div id="sideBar">
+        <p>Length: <span id="length">4</span></p>
+        <p>Speed:</p>
+        <input type="range" min="200" max="1200" value="600" class="slider" id="slider">
+        <input type="checkbox" id="checkDie" name="die" checked>
+        <span class="checkmark"></span>
+        <label for="die"> Can Die</label><br>
+    </div>
+    <div id="container">
+        <div class="snake" id="part1">
+            <img src="images/Face.jpg" alt="Face" id="face1">
+        </div>
+        <div id="apple"></div>
+    </div>
+    <div id="endOverlay">
+        <div id="inside">
+            <h2>Game Over</h2>
+            <p>Length: <span id="showScore"></span></p>
+            <button id="replayButton">Replay</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
