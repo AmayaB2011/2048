@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/favicon.jpg" type="images/x-icon">
-    <title>Snake Game</title>
+    <title>2048</title>
 </head>
 <body>
-    <div id="sideBar">
-        <p>Length: <span id="length">4</span></p>
-        <p>Speed:</p>
-        <input type="range" min="200" max="1200" value="600" class="slider" id="slider">
-        <input type="checkbox" id="checkDie" name="die" checked>
-        <span class="checkmark"></span>
-        <label for="die"> Can Die</label><br>
+    <div id="top">
+        <div id="newGame" class="topItem" onclick="newGame()">NEW<br>GAME</div>
+        <div id="score" class="topItem">SCORE<div id="scoreText">0</div></div>
+        <div id="bestScore" class="topItem">BEST<div id="best">0</div></div>
     </div>
-    <div id="container">
-        <div class="snake" id="part1">
-            <img src="images/Face.jpg" alt="Face" id="face1">
-        </div>
-        <div id="apple"></div>
+    <div id="board">
     </div>
-    <div id="endOverlay">
-        <div id="inside">
-            <h2>Game Over</h2>
-            <p>Length: <span id="showScore"></span></p>
-            <button id="replayButton">Replay</button>
+    <div id="cover">
+        <div id="gameOver">
+            <p class="coverText">GAME OVER</p>
+            <p class="coverText">SCORE: <span id="finalScore">0</span></p>
+            <div id="playAgain" class="topItem" onclick="newGame()">PLAY<br>AGAIN</div>
         </div>
     </div>
     <script src="script.js"></script>
