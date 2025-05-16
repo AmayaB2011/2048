@@ -2,7 +2,7 @@ document.getElementById('board').style.width = `${document.getElementById('board
 document.getElementById('top').style.width = `${document.getElementById('board').offsetWidth}px`;
 let board = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 let startingNumbers = [2, 4];
-let colours = ['#35FC53', '#FFDC54', '#FFB6B9', '#FF9CEE', '#FFA756', '#FF6F61', '#FF61E6', '#63E6BE', '#4D96FF', '#845EC2', '#2C2C54'];
+let colours = ['#63E6BE', '#FFDC54', '#FFB6B9', '#FF9CEE', '#FFA756', '#FF6F61', '#FF61E6', '#35FC53', '#4D96FF', '#845EC2', '#2C2C54'];
 let tileHeight = `${document.getElementById('board').offsetHeight / 4 - 10}px`;
 let tileWidth = `${document.getElementById('board').offsetWidth / 4 - 10}px`;
 let best = localStorage.getItem("best") || 0;
@@ -68,6 +68,7 @@ function combine(i1, i2) {
     board[i2] = '';
     newTile.classList.add('tile');
     newTile.classList.add(i1);
+    newTile.classList.add('new');
     if (size >= 1024) {
         newTile.style.fontSize = '35px';
     } else {
@@ -103,6 +104,7 @@ function combine(i1, i2) {
 }
 
 function left() {
+    let beforeBoard = [...board];
     let hasMoved = false;
     function moveLeft(place) {
         for (let i = 0; i < board.length; i++) {
@@ -138,12 +140,14 @@ function left() {
         }
     }
     if (hasMoved == true) {
+        slide(beforeBoard, board);
         createNewTile();
         checkForGameOver();
     }
 }
 
 function right() {
+    let beforeBoard = [...board];
     let hasMoved = false;
     function moveRight(place) {
         for (let i = board.length - 1; i >= 0; i--) {
@@ -179,12 +183,14 @@ function right() {
         }
     }
     if (hasMoved == true) {
+        slide(beforeBoard, board);
         createNewTile();
         checkForGameOver();
     }
 }
 
 function up() {
+    let beforeBoard = [...board];
     let hasMoved = false;
     function moveUp(place) {
         for (let i = 0; i < board.length; i++) {
@@ -220,12 +226,14 @@ function up() {
         }
     }
     if (hasMoved == true) {
+        slide(beforeBoard, board);
         createNewTile();
         checkForGameOver();
     }
 }
 
 function down() {
+    let beforeBoard = [...board];
     let hasMoved = false;
     function moveDown(place) {
         for (let i = board.length - 1; i >= 0; i--) {
@@ -261,6 +269,7 @@ function down() {
         }
     }
     if (hasMoved == true) {
+        slide(beforeBoard, board);
         createNewTile();
         checkForGameOver();
     }
@@ -315,6 +324,28 @@ function move(item, moveTo) {
     board[item] = '';
     tile.classList.add(moveTo);
     tile.classList.remove(item);
+}
+
+function slide(beforeBoard, afterBoard) {
+    let allFrom = [];
+    let allTo = [];
+    for (let i = 0; i < afterBoard.length; i++) {
+        if (beforeBoard[i] !== afterBoard[i]) {
+            if (beforeBoard[i] !== '') {
+                allFrom.push(i);
+            }
+            if (afterBoard[i] !== '') {
+                allTo.push(i);
+                if (document.getElementById(`place${i}`).children[0].classList.contains('new')) {
+                    allTo.push(i);
+                    document.getElementById(`place${i}`).children[0].classList.remove('new');
+                }
+            }
+        }
+    }
+    for (let i = 0; i < allTo.length; i++) {
+        console.log(`From: ${allFrom[i]} To: ${allTo[i]} Item: ${document.getElementById(`place${allTo[i]}`).children[0]}`);
+    }
 }
 
 function newGame() {
