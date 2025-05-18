@@ -1,0 +1,153 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    touch-action: none;
+}
+
+body {
+    background-color: #e3e3e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#board {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    height: 60%;
+    border-radius: 5px;
+    background-color: #e3e3e3;
+    padding: 5px;
+}
+
+.place {
+    border-radius: 2.5px;
+    background-color: #b4b4b4;
+    margin: 3px;
+}
+
+p {
+    margin: 2px;
+}
+
+#top {
+    justify-content: space-between;
+    display: flex;
+}
+
+.topItem {
+    border: none;
+    background-color: #b4b4b4;
+    color: #e3e3e3;
+    padding: 2px;
+    border-radius: 5px;
+    width: 84px;
+    height: 38px;
+    margin: 5px;
+    padding: 5px 5px 5px 10px;
+    align-items: center;
+    font-family: "Rubik", sans-serif;
+}
+
+#newGame:hover, #playAgain:hover {
+    background-color: #949292;
+    cursor: pointer;
+}
+
+.tile {
+    border-radius: 2.5px;
+    text-align: center;
+    justify-content: center;
+    font-family: "Rubik", sans-serif;
+    color: #e3e3e3;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    position: absolute;
+    font-weight: bold;
+    /* transition: transform 0.2s ease-in-out; */
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.grow {
+    animation: grow 0.2s ease-in-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pop {
+    animation: pop 0.2s ease;
+    z-index: 100;
+}
+
+@keyframes bigPop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.addscore {
+    animation: bigPop 0.3s ease;
+}
+
+#scoreText {
+    width: fit-content;
+}
+
+#cover {
+    position: absolute;
+    width: 100%;
+    background-color: #e3e3e35f;
+    opacity: 0;
+}
+
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coverText {
+    font-size: 30px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 450;
+}
+
+@media (max-width: 600px) {
+    #board {
+        height: 50%;
+    }
+}
