@@ -356,18 +356,20 @@ function slide(beforeBoard, afterBoard) {
 }
 
 function newGame() {
-    document.getElementById('cover').style.opacity = '0';
-    document.getElementById('cover').style.height = '0';
-    for (let i = 0; i < board.length; i++) {
-        if (document.getElementById(`place${i}`).children[0]) {
-            document.getElementById(`place${i}`).children[0].remove();
+    if (document.getElementById('cover').style.opacity > 0) {
+        document.getElementById('cover').style.opacity = '0';
+        document.getElementById('cover').style.height = '0';
+        for (let i = 0; i < board.length; i++) {
+            if (document.getElementById(`place${i}`).children[0]) {
+                document.getElementById(`place${i}`).children[0].remove();
+            }
         }
+        board = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+        score = 0;
+        document.getElementById('scoreText').innerText = score;
+        createNewTile();
+        createNewTile();   
     }
-    board = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-    score = 0;
-    document.getElementById('scoreText').innerText = score;
-    createNewTile();
-    createNewTile();
 }
 
 function checkForGameOver() {
