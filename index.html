@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="top">
-        <div id="newGame" class="topItem" onclick="newGame()">NEW<br>GAME</div>
+        <div id="newGame" class="topItem" onclick="newGame(false)">NEW<br>GAME</div>
         <div id="score" class="topItem">SCORE<div id="scoreText">0</div></div>
         <div id="bestScore" class="topItem">BEST<div id="best">0</div></div>
     </div>
@@ -20,7 +20,7 @@
         <div id="gameOver">
             <p class="coverText">GAME OVER</p>
             <p class="coverText">SCORE: <span id="finalScore">0</span></p>
-            <div id="playAgain" class="topItem" onclick="newGame()">PLAY<br>AGAIN</div>
+            <div id="playAgain" class="topItem" onclick="newGame(true)">PLAY<br>AGAIN</div>
         </div>
     </div>
     <script src="script.js"></script>
