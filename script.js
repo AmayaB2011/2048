@@ -9,6 +9,7 @@ let best = localStorage.getItem("best") || 0;
 let score = 0;
 let startingX;
 let startingY;
+let slideTime = 200;
 document.getElementById('best').innerText = best;
 
 for (let i = 0; i < 16; i++) {
@@ -348,15 +349,23 @@ function slide(beforeBoard, afterBoard) {
             }
         }
     }
-    for (let i = 0; i < allTo.length; i++) {
-        if (allFrom[i] !== allTo[i]) {
-            console.log(`From: ${allFrom[i]} To: ${allTo[i]} Item: ${document.getElementById(`place${allTo[i]}`).children[0]}`);
-        }
-    }
+    // for (let i = 0; i < allTo.length; i++) {
+    //     if (allFrom[i] !== allTo[i]) {
+    //         console.log(`From: ${allFrom[i]} To: ${allTo[i]}`);
+    //         let tile = document.getElementById(`place${allTo[i]}`).children[0];
+    //         tile.style.left = document.getElementById(`place${allFrom[i]}`).offsetLeft + 'px';
+    //         tile.style.top = document.getElementById(`place${allFrom[i]}`).offsetTop + 'px';
+    //         tile.style.transition = `left ${slideTime / 1000}s ease, top ${slideTime / 1000}s ease`;
+    //         requestAnimationFrame(() => {
+    //             tile.style.left = document.getElementById(`place${allTo[i]}`).offsetLeft + 'px';
+    //             tile.style.top = document.getElementById(`place${allTo[i]}`).offsetTop + 'px';
+    //         });
+    //     }
+    // }
 }
 
-function newGame() {
-    if (document.getElementById('cover').style.opacity > 0) {
+function newGame(gameOver) {
+    if ((gameOver && document.getElementById('cover').style.opacity > 0) || !gameOver) {
         document.getElementById('cover').style.opacity = '0';
         document.getElementById('cover').style.height = '0';
         for (let i = 0; i < board.length; i++) {
@@ -368,7 +377,7 @@ function newGame() {
         score = 0;
         document.getElementById('scoreText').innerText = score;
         createNewTile();
-        createNewTile();   
+        createNewTile();
     }
 }
 
