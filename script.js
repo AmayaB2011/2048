@@ -21,12 +21,12 @@ for (let i = 0; i < 16; i++) {
     document.getElementById('board').appendChild(newPlace);
 }
 
-function createNewTile() {
+function createNewTile(number = startingNumbers[Math.floor(Math.random() * startingNumbers.length)]) {
     if (board.includes('')) {
         let newTile = document.createElement('div');
         newTile.classList.add('grow');
         newTile.classList.add('tile');
-        let size = startingNumbers[Math.floor(Math.random() * startingNumbers.length)];
+        let size = number;
         let baseSize = document.getElementById('board').offsetWidth / 6.5;
         if (size >= 128 && size < 1024) {
             newTile.style.fontSize = `${baseSize * 0.7}px`;
@@ -406,3 +406,9 @@ function checkForGameOver() {
         }
     }
 }
+
+document.addEventListener('keydown', function(event) {
+    if (event.key >= '1' && event.key <= '9') {
+        createNewTile([8, 16, 32, 64, 128, 256, 512, 1024, 2048][event.key - 1]);
+    }
+});
